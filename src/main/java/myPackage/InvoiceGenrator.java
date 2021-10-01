@@ -10,11 +10,16 @@ public class InvoiceGenrator {
 		return Math.max(totalFare,MINIMUM_FARE);
 	}
 	
-	public double calculateFare(RidesFare[] rides) {
+	
+	
+	public InvoiceSummary calculateFare(RidesFare[] rides) {
 		double totalFare = 0;
+		int totalRides = 0;
 		for(RidesFare ride:rides) {
+			totalRides++;
 			totalFare += this.calculateFare(ride.distance,ride.time);
 		}
-		return totalFare;
+		
+		return new InvoiceSummary(totalRides,totalFare);
 	}
 }
